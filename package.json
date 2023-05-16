@@ -1,0 +1,14 @@
+{
+  "name": "ar",
+  "version": "1.0.0",
+  "description": "ロケットの軌道をARで表示するやつ",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "author": "Yuki Iwai",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
