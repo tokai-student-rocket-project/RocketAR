@@ -1,25 +1,38 @@
-var req = new XMLHttpRequest();
+var scale = 1;
+var decimate = 100;
 
+var scene = document.querySelector("a-scene");
+
+var req = new XMLHttpRequest();
 req.open("get", "log.csv", true);
 req.send(null);
-
 req.onload = () => {
   var rows = req.responseText.split("\n");
-  var entities = "";
 
   for (var rowNumber = 1; rowNumber < rows.length - 1; ++rowNumber) {
-    if (rowNumber % 100 == 0) {
+    if (rowNumber % decimate == 0) {
       var row = rows[rowNumber];
       var columns = row.split(",");
+
+      var pitch = columns[39];
+
+      console.log(pitch);
 
       var latitude = columns[85];
       var longitude = columns[86];
       var altitude = columns[87];
 
-      entities += `<a-entity material="color: red" geometry="primitive: sphere; radius: 5" position="0 ${altitude} 0" gps-new-entity-place="latitude: ${latitude}; longitude: ${longitude}"></a-entity>`;
+      var entity = document
+        .createRange()
+        .createContextualFragment(
+          `<a-entity material="color: #FF00FF" geometry="primitive: cylinder; height: ${
+            2 * scale
+          }; radius: ${0.075 * scale}" position="0 ${altitude} 0" rotation="${
+            pitch - 90
+          } 0 0" gps-new-entity-place="latitude: ${latitude}; longitude: ${longitude}"></a-entity>`
+        );
+
+      scene.appendChild(entity);
     }
   }
-
-  console.log(entities);
-  alert("loaded");
 };
