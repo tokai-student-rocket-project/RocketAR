@@ -1,5 +1,5 @@
-var scale = 1;
-var decimate = 100;
+var scale = 10;
+var decimate = 1000;
 
 var scene = document.querySelector("a-scene");
 
@@ -9,15 +9,13 @@ req.send(null);
 req.onload = () => {
   var rows = req.responseText.split("\n");
 
-  for (var rowNumber = 1; rowNumber < rows.length - 1; ++rowNumber) {
+  for (var rowNumber = 0; rowNumber < rows.length - 1; ++rowNumber) {
     if (rowNumber % decimate == 0) {
+      rowNumber++;
       var row = rows[rowNumber];
       var columns = row.split(",");
 
       var pitch = columns[39];
-
-      console.log(pitch);
-
       var latitude = columns[85];
       var longitude = columns[86];
       var altitude = columns[87];
