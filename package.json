@@ -1,14 +1,14 @@
 {
-  "name": "ar",
-  "version": "1.0.0",
-  "description": "ロケットの軌道をARで表示するやつ",
-  "main": "server.js",
+  "name": "rocket-ar",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "node server.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "author": "Yuki Iwai",
-  "license": "MIT",
-  "dependencies": {
-    "express": "^4.18.2"
+  "devDependencies": {
+    "vite": "^4.4.5"
   }
 }
