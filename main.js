@@ -1,5 +1,5 @@
-var scale = 10;
-var decimate = 1000;
+var scale = 1;
+var decimate = 100;
 
 var scene = document.querySelector("a-scene");
 
