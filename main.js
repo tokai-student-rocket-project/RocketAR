@@ -1,5 +1,5 @@
 var scale = 1;
-var decimate = 50;
+var decimate = 100;
 
 var scene = document.querySelector("a-scene");
 
@@ -16,22 +16,26 @@ req.onload = () => {
       var columns = row.split(",");
 
       // レガシー用
-      // var pitch = columns[39];
-      // var latitude = columns[85];
-      // var longitude = columns[86];
-      // var altitude = columns[87];
+      var pitch = columns[39];
+      var latitude = columns[85];
+      var longitude = columns[86];
+      var altitude = columns[87];
 
-      var pitch = columns[104];
-      var latitude = columns[71];
-      var longitude = columns[72];
-      var altitude = columns[73];
+      // var pitch = columns[104];
+      // var latitude = columns[71];
+      // var longitude = columns[72];
+      // var altitude = columns[73];
 
       var entity = document
         .createRange()
         .createContextualFragment(
-          `<a-entity material="color: #FF00FF" geometry="primitive: sphere; radius: ${
-            1 * scale
-          }" position="0 ${altitude} 0" gps-new-entity-place="latitude: ${latitude}; longitude: ${longitude}"></a-entity>`
+          `<a-entity material="color: #FF00FF" geometry="primitive: cylinder; height: ${
+            1.7 * scale
+          }; radius: ${
+            0.075 * scale
+          }" position="0 ${altitude} 0" gps-new-entity-place="latitude: ${latitude}; longitude: ${longitude}" rotation="${
+            pitch - 90
+          } 0 0"></a-entity>`
         );
 
       scene.appendChild(entity);
@@ -39,6 +43,6 @@ req.onload = () => {
   }
 
   alert(
-    "H-58の軌道を読み込みました。あなたが現地にいない場合、ブラウザの「位置情報の利用を許可」を切ることで、点火所にいるものとして扱われます。"
+    "H-57の軌道を読み込みました。あなたが現地にいない場合、ブラウザの「位置情報の利用を許可」を切ることで、点火所にいるものとして扱われます。"
   );
 };
